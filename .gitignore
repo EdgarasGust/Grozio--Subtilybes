@@ -3,9 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+node_modules
+dist
+.angular
 app.module.ts
 environment.ts
-environment.prod
+environment.prod.ts
 
 # User-specific files
 *.rsuser
