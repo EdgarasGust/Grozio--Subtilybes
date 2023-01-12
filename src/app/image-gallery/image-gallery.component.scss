@@ -1,0 +1,124 @@
+.background {
+  background-color: #f2efeb;
+  padding-bottom: 10em;
+  min-height: 90vh;
+}
+
+.carousel-padding {
+  padding-top: 4em;
+}
+
+.section-padding {
+  padding-top: 3em;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+li {
+  display: inline;
+}
+.list-flex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.list {
+  position: relative;
+  margin: 4px;
+  width: 300px;
+  height: 250px;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-img:hover {
+  cursor: pointer;
+  box-shadow: 10px 10px 20px grey;
+  margin: 1px;
+}
+
+.btn-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.btn-image:hover {
+  background-color: yellow;
+  margin: 1px;
+  color: black;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 40;
+}
+.backdrop-image {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1200px;
+  z-index: 50;
+}
+
+.activeClassText {
+  margin-top: 2em;
+  color: rgba(221, 206, 206, 0.4);
+}
+
+.dropdown {
+  background-color: #f2efeb;
+  border: 1px solid lightcyan;
+}
+.btn {
+  margin: 2px;
+  padding: 5px;
+}
+.active {
+  background-color: #fddd83;
+  border-color: #fddd83;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: rgb(255, 255, 255, 0.4);
+  font-size: 35px;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media screen and(max-width: 769px) {
+  .list {
+    width: 49%;
+    margin: 1px;
+  }
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

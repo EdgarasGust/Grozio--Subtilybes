@@ -1,0 +1,152 @@
+<div class="background" *ngIf="!showModal">
+  <div class="carousel-padding">
+    <app-swiper-carousel></app-swiper-carousel>
+  </div>
+  <div class="container section-padding">
+    <div class="text-center">
+      <div *ngIf="isAuthenticated" class="mb-4">
+        <h4>You are logged in!</h4>
+
+        <button type="button" class="btn btn-primary" routerLink="imageUpload">
+          Image Upload
+        </button>
+
+        <button type="button" class="btn btn-danger" (click)="onLogout()">
+          Logout
+        </button>
+      </div>
+      <div ngbDropdown placement="top-start" class="d-inline-block">
+        <button
+          id="dropdown"
+          ngbDropdownToggle
+          type="button"
+          class="btn cBtn"
+          [class.active]="
+            activeClass == 'klasikinis' ||
+            activeClass == 'hibridinis' ||
+            activeClass == 'volume' ||
+            activeClass == 'mega-volume' ||
+            activeClass == 'kim' ||
+            activeClass == 'babyLashes'
+          "
+        >
+          Blakstienos
+        </button>
+        <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdown">
+          <button
+            ngbDropdownItem
+            type="button"
+            (click)="onGalleryClick('klasikinis')"
+          >
+            Klasikinis priauginimas
+          </button>
+          <button
+            ngbDropdownItem
+            type="button"
+            (click)="onGalleryClick('hibridinis')"
+          >
+            Hibridinis priauginimas
+          </button>
+          <button
+            ngbDropdownItem
+            type="button"
+            (click)="onGalleryClick('volume')"
+          >
+            Volume priauginimas
+          </button>
+          <button
+            ngbDropdownItem
+            type="button"
+            (click)="onGalleryClick('mega-volume')"
+          >
+            Mega Volume
+          </button>
+          <button ngbDropdownItem type="button" (click)="onGalleryClick('kim')">
+            Kim Kardashian priauginimas
+          </button>
+          <button
+            ngbDropdownItem
+            type="button"
+            (click)="onGalleryClick('babyLashes')"
+          >
+            Baby lashes
+          </button>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="btn cBtn"
+        [class.active]="activeClass == 'permanentas'"
+        (click)="onGalleryClick('permanentas')"
+      >
+        Ilgalaikis makiažas
+      </button>
+    </div>
+
+    <div class="text-center mb-5 mt-1">
+      <button
+        type="button"
+        class="btn cBtn"
+        [class.active]="activeClass == 'laminavimas'"
+        (click)="onGalleryClick('laminavimas')"
+      >
+        Laminavimas
+      </button>
+
+      <button
+        type="button"
+        class="btn cBtn"
+        [class.active]="activeClass == 'antakiai'"
+        (click)="onGalleryClick('antakiai')"
+      >
+        Antakių dizainas
+      </button>
+
+      <button
+        type="button"
+        class="btn cBtn"
+        [class.active]="activeClass == 'depiliacija'"
+        (click)="onGalleryClick('depiliacija')"
+      >
+        Depiliacija
+      </button>
+      <div class="activeClassText">
+        <h3>{{ activeClass | uppercase }}</h3>
+      </div>
+    </div>
+    <div class="list-flex">
+      <div class="list" *ngFor="let image of visibleImages; index as i">
+        <img
+          (click)="onImageClick(i, image)"
+          [src]="image.imageUrl"
+          class="card-img"
+          width="300"
+          height="250"
+        />
+
+        <button
+          type="button"
+          class="btn btn-danger btn-image"
+          (click)="onRemove(image.key, image.imageId)"
+          *ngIf="isAuthenticated"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="showModal">
+  <div class="backdrop-image">
+    <app-swiper
+      [visibleImages]="visibleImages"
+      [index]="index"
+      (close)="close()"
+    ></app-swiper>
+  </div>
+  <div class="backdrop" (click)="close()">
+    <span class="close" (click)="close()">&times;</span>
+  </div>
+</div>

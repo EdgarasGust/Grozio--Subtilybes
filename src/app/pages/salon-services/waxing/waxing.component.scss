@@ -1,0 +1,24 @@
+.container-fluid {
+  background-color: #f2efeb;
+  padding-top: 5em;
+}
+
+.text-width {
+  text-align: justify;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.text-padding {
+  padding-left: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .image-one {
+    margin-bottom: 1em;
+  }
+}

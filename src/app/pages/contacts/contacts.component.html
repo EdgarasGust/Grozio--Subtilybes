@@ -1,0 +1,174 @@
+<div class="background-img"></div>
+<div class="container-fluid">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-6 height">
+        <h3>Mus Rasite</h3>
+        <p class="mb-0">Mes esame įsikure Kauno širdyje, senamiestyje.</p>
+        <p class="mb-0">&#8595;</p>
+        <p class="text-decoration">
+          <a
+            target="blank"
+            href="https://www.google.lt/maps/place/M.+Dauk%C5%A1os+g.+16,+Kaunas+44287/@54.8967154,23.889189,17z/data=!3m1!4b1!4m5!3m4!1s0x46e7220fb47dd991:0xa2995b633bd19fbb!8m2!3d54.8967154!4d23.8913777"
+            >Adresas: M.Dauksos g. 16, Kaunas</a
+          >
+        </p>
+        <h3>Registracija</h3>
+        <p>Užpildžius forma.</p>
+        <p class="text-decoration">
+          <a href="tel:+37060661833">Telefonu: +37060661833</a>
+        </p>
+
+        <a
+          href="https://www.facebook.com/gitanagustaitiene"
+          target="_blank"
+          class="pe-1"
+        >
+          <img
+            src="../../assets/facebook.svg"
+            alt="facbook icon"
+            width="30em"
+            height="30em"
+          />
+        </a>
+
+        <a
+          href="https://www.instagram.com/gitanagustaitiene/"
+          target="_blank"
+          class="ps-1"
+        >
+          <img
+            src="../../assets/instagram.svg"
+            alt="instagram icon"
+            width="30em"
+            height="30em"
+          />
+        </a>
+        <hr />
+      </div>
+
+      <div class="col-md-6 form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div id="user-data">
+            <div class="form-group">
+              <label for="username">Vardas*</label>
+              <input
+                type="text"
+                name="user_name"
+                class="form-control"
+                formControlName="username"
+              />
+            </div>
+            <span
+              *ngIf="
+                !form.get('username')?.valid && form.get('username')?.touched
+              "
+              class="help-block"
+              >Įrasykite vardą.</span
+            >
+            <div class="form-group">
+              <label for="email">Elektroninio pasto addresas*</label>
+              <input
+                type="email"
+                name="from_email"
+                class="form-control"
+                formControlName="email"
+              />
+            </div>
+            <span
+              *ngIf="!form.get('email')?.valid && form.get('email')?.touched"
+              class="help-block"
+              >Įrasykite elektroninio pašto adresą.</span
+            >
+            <div class="form-group">
+              <label for="tel">Telefono numeris</label>
+              <input
+                type="tel"
+                name="tel"
+                class="form-control"
+                formControlName="tel"
+              />
+            </div>
+            <div class="form-group">
+              <label for="service">Kokia procedura jus domina?*</label>
+
+              <select
+                name="service"
+                formControlName="service"
+                class="form-control minimal"
+              >
+                <option value="ilgalaikis">Ilgalaikis Makiažas</option>
+                <option value="blakstienos">Antakių Dažymas Hena</option>
+                <option value="blakstienos">Blakstienų Priauginimas</option>
+                <option value="laminavimas">Depiliacija</option>
+                <option value="laminavimas">Blakstienų Laminavimas</option>
+                <option value="laminavimas">Antakių Laminavimas</option>
+              </select>
+            </div>
+            <span
+              *ngIf="
+                !form.get('service')?.valid && form.get('service')?.touched
+              "
+              class="help-block"
+              >Pasirinkite dominančią procedūrą.</span
+            >
+            <div class="form-group mt-4">
+              <label for="questionService"
+                >Užduokite jus dominantį klausimą.*</label
+              >
+              <textarea
+                name="question"
+                cols="30"
+                rows="5"
+                class="form-control"
+                formControlName="question"
+              ></textarea>
+            </div>
+            <span
+              *ngIf="
+                !form.get('question')?.valid && form.get('question')?.touched
+              "
+              class="help-block"
+              >Įrasykite klausimą.</span
+            >
+          </div>
+          <div *ngIf="isLoading">
+            <div>
+              <app-spinner></app-spinner>
+            </div>
+          </div>
+          <button type="submit" [disabled]="!form.valid" class="btn cBtn mt-4">
+            Siūsti
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="submited">
+      <div class="popup">
+        <h3>
+          {{ name }}
+          {{ successMsg ? "Ačiū už jūsų žinutę!" : "Įvyko klaida" }}
+        </h3>
+        <p>
+          {{
+            successMsg
+              ? "Atsakysime į jūsū klausimus, kaip galėdami greičiau."
+              : "Tinklo klaida, bandykite dar karta. Atsiprašome už nepatogumus"
+          }}
+        </p>
+        <button class="btn cBtn p-2" (click)="onMailSent()">
+          Į pagrindinį puslapį
+        </button>
+      </div>
+      <div class="backdrop" (click)="onMailSent()"></div>
+    </div>
+  </div>
+</div>
+
+<div class="agm-map-container-inner sebm-google-map-container-inner"></div>
+<div class="agm-map-content">
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+    <agm-marker [latitude]="lat" [longitude]="lng"> > </agm-marker>
+  </agm-map>
+</div>

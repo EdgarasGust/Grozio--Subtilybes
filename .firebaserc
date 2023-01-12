@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "subtilusgrozis-f6916": {
+      "hosting": {
+        "subtilusGrozis": [
+          "subtilusgrozis-f6916"
+        ]
+      }
+    },
+    "grozio-subtilybes": {
+      "hosting": {
+        "grozioSubtilybes": [
+          "grozio-subtilybes"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "grozio-subtilybes"
+  }
+}

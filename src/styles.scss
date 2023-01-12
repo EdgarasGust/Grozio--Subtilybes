@@ -1,0 +1,18 @@
+* {
+  font-family: "Gulzar", serif;
+}
+
+.cBtn {
+  background-color: transparent;
+  border-color: #fddd83;
+  color: grey;
+  cursor: pointer;
+}
+
+.cBtn:hover,
+.cBtn:active,
+.cBtn:focus {
+  background-color: #fddd83;
+  border-color: #fddd83;
+  color: white;
+}
