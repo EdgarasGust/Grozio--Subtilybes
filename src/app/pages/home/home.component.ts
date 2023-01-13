@@ -26,9 +26,9 @@ import { Meta } from '@angular/platform-browser';
         query('#one', style({ opacity: 0, transform: 'translateY(30px)' })),
         query(
           '#one',
-          stagger('800ms', [
+          stagger('400ms', [
             animate(
-              '800ms 2.2s ease-out',
+              '700ms 1.6s ease-out',
               style({ opacity: 1, transform: 'translateY(0)' })
             ),
           ])
@@ -40,8 +40,8 @@ import { Meta } from '@angular/platform-browser';
         query('#two', style({ opacity: 0 })),
         query(
           '#two',
-          stagger('800ms', [
-            animate('400ms 2.5s ease-out', style({ opacity: 1 })),
+          stagger('400ms', [
+            animate('400ms 1.5s ease-out', style({ opacity: 1 })),
           ])
         ),
       ]),

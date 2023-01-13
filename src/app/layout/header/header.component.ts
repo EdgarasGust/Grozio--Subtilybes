@@ -18,9 +18,9 @@ import { Component, OnInit } from '@angular/core';
         query('.anime', style({ opacity: 0, transform: 'translateX(-240px)' })),
         query(
           '.anime',
-          stagger('500ms', [
+          stagger('400ms', [
             animate(
-              '800ms ease-out',
+              '600ms ease-out',
               style({ opacity: 1, transform: 'translateX(0)' })
             ),
           ])
