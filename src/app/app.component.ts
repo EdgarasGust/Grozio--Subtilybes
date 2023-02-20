@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
+import { FacebookService, InitParams } from 'ngx-facebook';
 
 import { AuthService } from './image-gallery/auth/auth/auth.service';
 
@@ -14,7 +15,8 @@ export class AppComponent {
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    private authService: AuthService
+    private authService: AuthService,
+    private facebookService: FacebookService
   ) {}
 
   title = 'Grozio Subtilybes';
@@ -42,5 +44,11 @@ export class AppComponent {
 
     this.authService.autoLogin();
     this.state = true;
+    this.initFacebookService();
+  }
+
+  private initFacebookService() {
+    const initParams: InitParams = { xfbml: true, version: 'v3.2' };
+    this.facebookService.init(initParams);
   }
 }

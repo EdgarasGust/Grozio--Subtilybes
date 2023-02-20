@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { costs, Procedure } from './service-cost';
 
 @Component({
   selector: 'app-cost',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cost.component.scss'],
 })
 export class CostComponent implements OnInit {
+  costs: Procedure[] = costs;
+
   constructor() {}
 
   ngOnInit(): void {}

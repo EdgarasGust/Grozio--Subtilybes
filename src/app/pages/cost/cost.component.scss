@@ -12,9 +12,11 @@
 .container-fluid {
   background-color: #f2efeb;
   padding: 0;
-}
-.container-media {
+
   padding-bottom: 10em;
+}
+.container {
+  padding: 0;
 }
 
 h2 {
@@ -22,6 +24,17 @@ h2 {
   font-size: 4rem;
   overflow: hidden;
   padding-bottom: 1em;
+}
+.cross-out {
+  text-decoration: line-through;
+}
+
+.span-class {
+  font-size: 13px;
+  background-color: transparent;
+}
+.td-width {
+  width: 61%;
 }
 
 ::ng-deep span {
@@ -38,12 +51,5 @@ h2 {
 @media (max-width: 576px) {
   h2 {
     font-size: 2.5rem;
-  }
-}
-@media (min-width: 576px) {
-  .container-media {
-    margin: 0 auto;
-    width: 80%;
-    max-width: 1400px;
   }
 }
