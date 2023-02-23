@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { FacebookService, InitParams } from 'ngx-facebook';
 
 import { AuthService } from './image-gallery/auth/auth/auth.service';
 
@@ -9,14 +8,13 @@ import { AuthService } from './image-gallery/auth/auth/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewInit {
   state: boolean = false;
 
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    private authService: AuthService,
-    private facebookService: FacebookService
+    private authService: AuthService
   ) {}
 
   title = 'Grozio Subtilybes';
@@ -29,26 +27,29 @@ export class AppComponent {
         content:
           'Blakstienų priauginimas:Klasikinės,Mix,Volume,Kim Kardashian.Ilgalaikis/Permanentinis makiažas.Depiliacija vašku.Antakių dažymas.Blakstienų laminavimas.Kaunas, Senamiestis',
       },
-
       {
         name: 'keywords',
         content:
           'Blakstienų priauginimas, Ilgalaikis Makiažas, Depiliacija Vašku, Antakių Dažymas, Blakstienų Laminavimas! Kaunas - Senamiestis!',
       },
-
       {
         name: 'robots',
         content: 'index, follow',
       },
     ]);
-
     this.authService.autoLogin();
     this.state = true;
-    this.initFacebookService();
   }
 
-  private initFacebookService() {
-    const initParams: InitParams = { xfbml: true, version: 'v3.2' };
-    this.facebookService.init(initParams);
+  ngAfterViewInit(): void {
+    this.facebookChatBox();
+  }
+
+  facebookChatBox() {
+    const chatbox = document.getElementById('fb-customer-chat');
+    if (chatbox) {
+      chatbox.setAttribute('page_id', '101819517953151');
+      chatbox.setAttribute('attribution', 'biz_inbox');
+    }
   }
 }

@@ -23,6 +23,7 @@ export class GiftCardComponent implements OnInit {
     service: new FormControl('', [Validators.required]),
     coupon: new FormControl('', [Validators.required]),
     question: new FormControl(''),
+    privacy: new FormControl('', [Validators.requiredTrue]),
   });
   constructor(
     private fb: FormBuilder,

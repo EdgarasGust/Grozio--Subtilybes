@@ -11,7 +11,7 @@ import { ContactFormService } from '../../shared/contact-form.service';
 })
 export class ContactsComponent implements OnInit {
   name: any = '';
-  submited: boolean = false;
+  submitted: boolean = false;
   isLoading: boolean = false;
   successMsg: string = '';
   errorMsg: string = '';
@@ -22,6 +22,7 @@ export class ContactsComponent implements OnInit {
     tel: new FormControl(''),
     service: new FormControl('', [Validators.required]),
     question: new FormControl('', [Validators.required]),
+    privacy: new FormControl('', [Validators.requiredTrue]),
   });
 
   zoom: number = 15;
@@ -43,12 +44,12 @@ export class ContactsComponent implements OnInit {
     this.formService.sendFormDetails(this.form.value).subscribe({
       next: (res) => {
         this.isLoading = false;
-        this.submited = true;
+        this.submitted = true;
         this.successMsg = res;
       },
       error: (err) => {
         this.isLoading = false;
-        this.submited = true;
+        this.submitted = true;
         this.errorMsg = err ? err : err.message;
       },
     });
@@ -61,7 +62,7 @@ export class ContactsComponent implements OnInit {
 
   onMailSent() {
     this.name = '';
-    this.submited = false;
+    this.submitted = false;
     this.router.navigate(['/']);
   }
 }

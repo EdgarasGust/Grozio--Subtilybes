@@ -111,6 +111,7 @@
               <label for="service">Kokia procedūra Jus domina?*</label>
 
               <select
+                id="service"
                 name="service"
                 formControlName="service"
                 class="form-control minimal"
@@ -139,6 +140,7 @@
                 cols="30"
                 rows="5"
                 class="form-control"
+                id="questionService"
                 formControlName="question"
               ></textarea>
             </div>
@@ -149,6 +151,24 @@
               class="help-block"
               >Įrasykite klausimą.</span
             >
+            <div class="form-group mt-4">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="privacy"
+                formControlName="privacy"
+                id="privacy"
+              />
+              <label class="ms-2 form-check-label small-text" for="privacy">
+                Sutinku su
+                <a
+                  class="policy-text"
+                  href="../../../assets/Privacy-Policy/Privatumo politika.pdf"
+                  target="blank"
+                  >Asmens duomenų tvarkymo taisyklėmis.</a
+                >
+              </label>
+            </div>
           </div>
           <div *ngIf="isLoading">
             <div>
@@ -162,7 +182,7 @@
       </div>
     </div>
 
-    <div *ngIf="submited">
+    <div *ngIf="submitted">
       <div class="popup">
         <h3>
           {{ name }}
