@@ -27,7 +27,8 @@
             activeClass == 'volume' ||
             activeClass == 'mega-volume' ||
             activeClass == 'kim' ||
-            activeClass == 'babyLashes'
+            activeClass == 'babyLashes' ||
+            activeClass == 'wet-lashes'
           "
         >
           Blakstienos
@@ -70,6 +71,13 @@
             (click)="onGalleryClick('babyLashes')"
           >
             Baby lashes
+          </button>
+          <button
+            ngbDropdownItem
+            type="button"
+            (click)="onGalleryClick('wet-lashes')"
+          >
+            Wet Lashes
           </button>
         </div>
       </div>
@@ -128,7 +136,7 @@
         <button
           type="button"
           class="btn btn-danger btn-image"
-          (click)="onRemove(image.key, image.imageId)"
+          (click)="onRemove(image.key, image.imageId, image.category)"
           *ngIf="isAuthenticated"
         >
           Remove

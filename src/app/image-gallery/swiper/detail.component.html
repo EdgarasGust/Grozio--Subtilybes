@@ -10,7 +10,12 @@
   [virtual]="true"
   class="mySwiper"
 >
-  <ng-template swiperSlide *ngFor="let image of visibleImages; index as i">
+  <ng-template
+    swiperSlide
+
+    *ngFor="let image of visibleImages; index as i"
+  >
     <img [src]="image.imageUrl" alt="image: {{ i + 1 }}" class="img-fluid" />
   </ng-template>
 </swiper>
+

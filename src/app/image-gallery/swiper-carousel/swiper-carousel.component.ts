@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import SwiperCore, {
   Autoplay,
@@ -13,17 +13,19 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
   selector: 'app-swiper-carousel',
   templateUrl: './swiper-carousel.component.html',
   styleUrls: ['./swiper-carousel.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class SwiperCarouselComponent implements OnInit {
   images: any[] = [
-    '../../../assets/carousel/carousel-02.webp',
-    '../../../assets/carousel/carousel-04.webp',
+    '../../../assets/carousel/carousel-01.webp',
+    '../../../assets/carousel/carousel-09.webp',
     '../../../assets/carousel/carousel-05.webp',
     '../../../assets/carousel/carousel-08.webp',
     '../../../assets/carousel/carousel-06.webp',
-    '../../../assets/carousel/carousel-03.webp',
+
     '../../../assets/carousel/carousel-07.webp',
+    '../../../assets/carousel/carousel-03.webp',
+    '../../../assets/carousel/carousel-02.webp',
   ];
   config: SwiperOptions = {
     virtual: true,

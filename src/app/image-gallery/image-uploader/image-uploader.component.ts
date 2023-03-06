@@ -12,7 +12,7 @@ import { GalleryImageService } from '../gallery-image.service';
 })
 export class GalleryComponent implements OnInit {
   isLoading: boolean = false;
-  isSubmited: boolean;
+  isSubmitted: boolean;
   selectedImage: any;
   imageSrc: string;
   downloadURL: Observable<string>;
@@ -44,7 +44,7 @@ export class GalleryComponent implements OnInit {
   }
 
   onSubmit(formValue: any) {
-    this.isSubmited = true;
+    this.isSubmitted = true;
     this.isLoading = true;
     if (this.formTemplate.valid) {
       const filePath = `${this.formTemplate.value.category}/${this.selectedImage.name}`;
@@ -59,12 +59,12 @@ export class GalleryComponent implements OnInit {
               formValue['imageUrl'] = url;
               formValue['imageId'] = this.selectedImage.name;
               this.imageService.insertImageDetails(formValue);
-
               this.resetForm();
             });
           })
         )
         .subscribe({
+          next: (x) => console.log('success'),
           error: (e) => {
             alert(`There was an error. Error message: ${e.message}`);
             this.resetForm();
@@ -81,7 +81,7 @@ export class GalleryComponent implements OnInit {
     });
     this, (this.imageSrc = '/assets/images/upload.jpg');
     this.selectedImage = null;
-    this.isSubmited = false;
+    this.isSubmitted = false;
     this.isLoading = false;
   }
 }

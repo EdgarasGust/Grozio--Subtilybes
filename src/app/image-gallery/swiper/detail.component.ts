@@ -19,7 +19,7 @@ SwiperCore.use([Keyboard, Pagination, Navigation, Virtual]);
   selector: 'app-swiper',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('swiperRef', { static: false }) swiper?: SwiperComponent;

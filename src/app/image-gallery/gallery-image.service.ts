@@ -44,6 +44,10 @@ export class GalleryImageService {
     if (this.category === 'babyLashes') {
       this.firebaseList('babyLashes', imageDetails);
     }
+    if (this.category === 'wet-lashes') {
+      this.firebaseList('wet-lashes', imageDetails);
+      console.log('wet-lashes');
+    }
     if (this.category === 'laminavimas') {
       this.firebaseList('laminavimas', imageDetails);
     }
@@ -62,17 +66,27 @@ export class GalleryImageService {
     this.imageDetailsList = this.firebase.list(`${locationRef}`);
     const newRef = this.imageDetailsList.push(imageDetails);
     const newKey = newRef.key;
-    this.firebase.list(`${locationRef}`).update(newKey!, { key: newKey });
+    console.log(this.imageDetailsList);
+    console.log(newRef);
+
+    this.firebase
+      .list(`${locationRef}`)
+      .update(newKey!, { key: newKey })
+      .then(() => {
+        console.log('Realtime database updated');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
-  removeItem(key: string, imageId: string) {
+  removeItem(key: string, imageId: string, category: string) {
     if (key && imageId) {
       this.imageDetailsList.remove(key);
-      const deleteFromStorage = ref(
-        this.storage,
-        `${this.category}/${imageId}`
-      );
-      deleteObject(deleteFromStorage);
+      const deleteFromStorage = ref(this.storage, `${category}/${imageId}`);
+      deleteObject(deleteFromStorage).then(() => {
+        console.log(`File deleted, ref: ', ${category}/${imageId}`);
+      });
     } else {
       alert('There was a problem! Try again');
     }

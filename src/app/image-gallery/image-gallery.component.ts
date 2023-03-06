@@ -63,8 +63,8 @@ export class ImageGalleryComponent implements OnInit, OnDestroy {
   onLogout() {
     this.auth.logout();
   }
-  onRemove(key: string, imageId: string) {
-    this.galleryService.removeItem(key, imageId);
+  onRemove(key: string, imageId: string, category: string) {
+    this.galleryService.removeItem(key, imageId, category);
   }
 
   ngOnDestroy(): void {
