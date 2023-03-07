@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { ContactFormService } from '../../shared/contact-form.service';
+import { Message } from 'src/app/shared/thank-you/message';
 
 @Component({
   selector: 'app-contacts',
@@ -13,8 +14,10 @@ export class ContactsComponent implements OnInit {
   name: any = '';
   submitted: boolean = false;
   isLoading: boolean = false;
-  successMsg: string = '';
-  errorMsg: string = '';
+  resMessage: Message = {
+    heading: '',
+    message: '',
+  };
 
   form = this.fb.group({
     username: new FormControl('', [Validators.required]),
@@ -40,29 +43,40 @@ export class ContactsComponent implements OnInit {
   onSubmit() {
     this.name = this.form.value.username;
     this.isLoading = true;
-
+    this.submitted = true;
+    this.sendForm();
+    this.form.reset();
+  }
+  sendForm() {
     this.formService.sendFormDetails(this.form.value).subscribe({
       next: (res) => {
         this.isLoading = false;
         this.submitted = true;
-        this.successMsg = res;
+        this.resMessage = {
+          heading: 'Ačiū už jūsų žinutę!',
+          message: 'Atsakysime į jūsū klausimus, kaip galėdami greičiau.',
+        };
       },
       error: (err) => {
         this.isLoading = false;
         this.submitted = true;
-        this.errorMsg = err ? err : err.message;
+        console.error(err.message);
+        this.resMessage = {
+          heading: 'Įvyko klaida.',
+          message:
+            'Tinklo klaida, bandykite dar karta. Atsiprašome už nepatogumus.',
+        };
       },
     });
-
-    this.successMsg = '';
-    this.errorMsg = '';
-
-    this.form.reset();
   }
 
-  onMailSent() {
+  onClose() {
     this.name = '';
     this.submitted = false;
+    this.resMessage = {
+      heading: '',
+      message: '',
+    };
     this.router.navigate(['/']);
   }
 }

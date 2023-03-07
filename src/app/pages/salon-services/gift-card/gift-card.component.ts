@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ContactFormService } from 'src/app/shared/contact-form.service';
+import { Message } from 'src/app/shared/thank-you/message';
 
 @Component({
   selector: 'app-gift-card',
@@ -10,10 +11,12 @@ import { ContactFormService } from 'src/app/shared/contact-form.service';
 })
 export class GiftCardComponent implements OnInit {
   name: any = '';
-  submited: boolean = false;
+  submitted: boolean = false;
   isLoading: boolean = false;
-  successMsg: string = '';
-  errorMsg: string = '';
+  resMessage: Message = {
+    heading: '',
+    message: '',
+  };
 
   form = this.fb.group({
     username: new FormControl('', [Validators.required]),
@@ -36,28 +39,40 @@ export class GiftCardComponent implements OnInit {
   onSubmit() {
     this.name = this.form.value.username;
     this.isLoading = true;
-
-    this.formService.sendFormDetails(this.form.value).subscribe({
-      next: (res) => {
-        this.isLoading = false;
-        this.submited = true;
-        this.successMsg = res;
-      },
-      error: (err) => {
-        this.isLoading = false;
-        this.submited = true;
-        this.errorMsg = err ? err : err.message;
-      },
-    });
-    this.successMsg = '';
-    this.errorMsg = '';
-
+    this.sendForm();
     this.form.reset();
   }
 
-  onMailSent() {
+  sendForm() {
+    this.formService.sendFormDetails(this.form.value).subscribe({
+      next: (res) => {
+        this.isLoading = false;
+        this.submitted = true;
+        this.resMessage = {
+          heading: 'Ačiū už Jūsų žinutę!',
+          message: 'Mes su Jumis susisieksime, kaip galėdami greičiau.',
+        };
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.submitted = true;
+        console.error(err.message);
+        this.resMessage = {
+          heading: 'Įvyko klaida.',
+          message:
+            'Tinklo klaida, bandykite dar karta. Atsiprašome už nepatogumus.',
+        };
+      },
+    });
+  }
+
+  onClose() {
+    this.submitted = false;
     this.name = '';
-    this.submited = false;
+    this.resMessage = {
+      heading: '',
+      message: '',
+    };
     this.router.navigate(['/']);
   }
 }

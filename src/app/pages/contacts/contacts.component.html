@@ -187,25 +187,12 @@
         </form>
       </div>
     </div>
-
     <div *ngIf="submitted">
-      <div class="popup">
-        <h3>
-          {{ name }}
-          {{ successMsg ? "Ačiū už jūsų žinutę!" : "Įvyko klaida" }}
-        </h3>
-        <p>
-          {{
-            successMsg
-              ? "Atsakysime į jūsū klausimus, kaip galėdami greičiau."
-              : "Tinklo klaida, bandykite dar karta. Atsiprašome už nepatogumus"
-          }}
-        </p>
-        <button class="btn cBtn p-2" (click)="onMailSent()">
-          Į pagrindinį puslapį
-        </button>
-      </div>
-      <div class="backdrop" (click)="onMailSent()"></div>
+      <app-thank-you
+        [name]="name"
+        [resMessage]="resMessage"
+        (close)="onClose()"
+      ></app-thank-you>
     </div>
   </div>
 </div>
