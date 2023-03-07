@@ -1,0 +1,35 @@
+<swiper
+  [config]="sliderConfig"
+  class="mySwiper"
+  *ngIf="comment$ | async as comments; else loading"
+>
+  <ng-container
+    class="card-container"
+    *ngFor="let comment of comments; trackBy: trackById"
+  >
+    <ng-template swiperSlide>
+      <div class="comment-card">
+        <div class="comment-name">
+          <p>
+            <b> {{ comment.name }}</b>
+          </p>
+          <p><b> Procedūra: </b>{{ comment.action }}</p>
+        </div>
+        <div *ngIf="comment.starRating">
+          <star-rating
+            [starType]="'svg'"
+            [rating]="comment.starRating"
+            [readOnly]="true"
+          ></star-rating>
+        </div>
+        <div class="comment-text">
+          <hr class="horizontal-line" />
+          <p>{{ comment.comment }}</p>
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+</swiper>
+<ng-template #loading>
+  <app-spinner class="d-flex justify-content-center"></app-spinner>
+</ng-template>

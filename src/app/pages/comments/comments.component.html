@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="comments-heading">
+    <p>Atsiliepimai</p>
+  </div>
+  <div class="b-div">
+    <div class="border-1"></div>
+    <div class="border-2"></div>
+  </div>
+  <app-comments-slider></app-comments-slider>
+  <div class="text-center my-4">
+    <button
+      class="btn cBtn p-2"
+      *ngIf="!commentContainerVisible"
+      (click)="commentContainerVisible = true"
+    >
+      Palikti atsiliepimą
+    </button>
+  </div>
+  <div class="form-container" *ngIf="commentContainerVisible">
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <star-rating-control formControlName="starRating"></star-rating-control>
+      </div>
+      <div class="form-group">
+        <label for="name">Vardas</label>
+        <input
+          class="form-control"
+          type="text"
+          id="name"
+          minlength="3"
+          formControlName="name"
+        />
+        <span
+          *ngIf="!form.get('name')?.valid && form.get('name')?.touched"
+          class="help-block"
+          >Įrašykite savo vardą.</span
+        >
+      </div>
+      <div class="form-group">
+        <label for="action">Kokia procedūra buvo atlikta?</label>
+        <select
+          id="action"
+          name="action"
+          formControlName="action"
+          class="form-control minimal"
+        >
+          <option value="Ilgalaikis Makiažas">Ilgalaikis Makiažas</option>
+          <option value="Antakių Dažymas Hena">Antakių Dažymas Hena</option>
+          <option value="Blakstienų Priauginimas">
+            Blakstienų Priauginimas
+          </option>
+          <option value="Depiliacija">Depiliacija</option>
+          <option value="Blakstienų Laminavimas">Blakstienų Laminavimas</option>
+          <option value="Antakių Laminavimas">Antakių Laminavimas</option>
+        </select>
+
+        <span
+          *ngIf="!form.get('action')?.valid && form.get('action')?.touched"
+          class="help-block"
+          >Pasirinkite atliktą procedūrą.</span
+        >
+      </div>
+      <div class="form-group">
+        <label for="comment">Komentaras</label>
+        <textarea
+          name="comment"
+          cols="30"
+          rows="5"
+          class="form-control"
+          formControlName="comment"
+        ></textarea>
+        <span
+          *ngIf="!form.get('comment')?.valid && form.get('comment')?.touched"
+          class="help-block"
+          >Užmiršote palikti komentarą :)</span
+        >
+      </div>
+      <button
+        class="btn btn-primary my-4 form-control"
+        type="button"
+        [disabled]="!form.valid"
+        (click)="onSubmit()"
+      >
+        Siūsti
+      </button>
+    </form>
+    <div *ngIf="submitted">
+      <app-thank-you
+        [name]="name"
+        [resMessage]="resMessage"
+        (close)="onClose()"
+      ></app-thank-you>
+    </div>
+  </div>
+  <div *ngIf="spinner" class="text-center">
+    <app-spinner></app-spinner>
+  </div>
+</div>

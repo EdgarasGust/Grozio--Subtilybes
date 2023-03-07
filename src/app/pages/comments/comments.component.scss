@@ -1,0 +1,52 @@
+.comments-heading {
+  display: flex;
+  justify-content: center;
+
+  p {
+    color: #f8f7f5;
+    font-size: 4rem;
+  }
+}
+.form-container {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form {
+  width: 100%;
+}
+.form-group {
+  margin-top: 0.8em;
+}
+
+.help-block {
+  color: red;
+  background-color: transparent;
+}
+.ng-pristine {
+  box-shadow: none;
+}
+.form-control {
+  box-shadow: none;
+}
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+@media screen and (min-width: 769px) {
+  .form {
+    max-width: 600px;
+  }
+  .comments-heading p {
+    font-weight: 600;
+    font-size: 8.5rem;
+  }
+}
+@media screen and(max-width: 320px) {
+  .comments-heading p {
+    font-size: 3rem;
+  }
+}
