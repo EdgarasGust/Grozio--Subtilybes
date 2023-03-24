@@ -37,14 +37,13 @@ h2 {
   width: 61%;
 }
 
-::ng-deep span {
+:host ::ng-deep span {
   color: black;
 }
 
-::ng-deep button.accordion-button.ng-star-inserted,
-::ng-deep .ng-star-inserted,
-::ng-deep .accordion-button {
-  background-color: #ebe7e2;
+:host ::ng-deep button.accordion-button.ng-star-inserted,
+:host ::ng-deep .accordion-body {
+  background: #ebe7e2;
   box-shadow: none;
 }
 

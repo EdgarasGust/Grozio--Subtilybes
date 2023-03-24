@@ -22,7 +22,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let details of data.details">
+              <tr *ngFor="let details of data.details; trackBy: trackByName">
                 <th scope="row"></th>
                 <td class="td-width">
                   {{ details.procedure }}
@@ -34,7 +34,6 @@
                 <td *ngIf="!details.discount; else discount">
                   {{ details.cost }}
                 </td>
-
                 <ng-template #discount>
                   <td>
                     <span class="cross-out">{{ details.cost }}</span>

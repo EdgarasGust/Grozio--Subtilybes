@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { Comments } from 'src/app/shared/comments';
@@ -16,7 +16,7 @@ SwiperCore.use([Virtual, Navigation, Scrollbar]);
   templateUrl: './comments-slider.component.html',
   styleUrls: ['./comments-slider.component.scss'],
 })
-export class CommentsSliderComponent implements OnInit {
+export class CommentsSliderComponent {
   sliderConfig: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 10,
@@ -29,8 +29,16 @@ export class CommentsSliderComponent implements OnInit {
         slidesPerView: 1,
         spaceBetween: 10,
       },
-      1050: {
+      810: {
         slidesPerView: 2,
+        spaceBetween: 10,
+      },
+      1050: {
+        slidesPerView: 3,
+        spaceBetween: 10,
+      },
+      1450: {
+        slidesPerView: 4,
         spaceBetween: 10,
       },
     },
@@ -39,8 +47,6 @@ export class CommentsSliderComponent implements OnInit {
   comment$: Observable<Comments[]> = this.commentsService.comments$;
 
   constructor(private commentsService: CommentsService) {}
-
-  ngOnInit(): void {}
 
   trackById(index: number, comment: any) {
     return comment.id;

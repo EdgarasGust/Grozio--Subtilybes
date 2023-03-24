@@ -34,8 +34,8 @@ export class CommentsService {
     return this.http
       .get<Comments[]>(this.apiServer + '/get_comments.php/')
       .pipe(
-        tap((x: Comments[]) => {
-          this.comment$.next(x);
+        tap((res: Comments[]) => {
+          this.comment$.next(res);
         }),
         retry(1),
         catchError(this.handleError)

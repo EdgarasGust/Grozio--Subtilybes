@@ -23,7 +23,7 @@ export class CouponComponent implements OnInit, OnDestroy {
 
   onOrderButtonClicked() {
     this.timer = false;
-    this.router.navigate(['/services/gift-card']);
+    this.router.navigate(['/paslaugos/dovanų-kuponas']);
   }
 
   onClose() {

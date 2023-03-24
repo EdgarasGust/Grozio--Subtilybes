@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { interval, Subscription, take } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { CommentsService } from 'src/app/shared/comments.service';
 import { Message } from 'src/app/shared/thank-you/message';
 
@@ -14,7 +14,7 @@ import { Message } from 'src/app/shared/thank-you/message';
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss'],
 })
-export class CommentsComponent implements OnInit {
+export class CommentsComponent implements OnInit, OnDestroy {
   form: FormGroup;
   commentContainerVisible: boolean = false;
   spinner: boolean = false;
@@ -24,6 +24,7 @@ export class CommentsComponent implements OnInit {
     heading: '',
     message: '',
   };
+  commentSubscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -45,7 +46,7 @@ export class CommentsComponent implements OnInit {
   }
 
   getAllComments() {
-    this.commentsService.getComments().subscribe();
+    this.commentSubscription = this.commentsService.getComments().subscribe();
   }
 
   onSubmit() {
@@ -86,5 +87,9 @@ export class CommentsComponent implements OnInit {
       heading: '',
       message: '',
     };
+  }
+
+  ngOnDestroy(): void {
+    this.commentSubscription.unsubscribe();
   }
 }

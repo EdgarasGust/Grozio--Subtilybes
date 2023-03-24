@@ -10,10 +10,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  OnInit,
   ViewChildren,
 } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -48,33 +46,7 @@ import { Meta } from '@angular/platform-browser';
     ]),
   ],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   @ViewChildren('anim', { read: ElementRef })
   state: any;
-
-  constructor(private meta: Meta) {}
-
-  ngOnInit(): void {
-    this.meta.addTags(
-      [
-        {
-          name: 'description',
-          content:
-            'Blakstienų priauginimas:Klasikinės,Mix,Volume,Kim Kardashian.Ilgalaikis/Permanentinis makiažas.Depiliacija vašku.Antakių dažymas.Blakstienų laminavimas. Kaunas.',
-        },
-
-        {
-          name: 'keywords',
-          content:
-            'Blakstienų priauginimas, Ilgalaikis Makiažas, Depiliacija Vašku, Antakių Dažymas, Blakstienų Laminavimas! Kaunas - Senamiestis!',
-        },
-
-        {
-          name: 'robots',
-          content: 'index, follow',
-        },
-      ],
-      true
-    );
-  }
 }

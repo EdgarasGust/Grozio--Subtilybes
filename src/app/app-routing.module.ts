@@ -18,37 +18,66 @@ import { WaxingComponent } from './pages/salon-services/waxing/waxing.component'
 
 const appRoutes: Routes = [
   {
-    path: '',
-    component: HomeComponent,
-    pathMatch: 'full',
-  },
-  {
-    path: 'gallery',
+    path: 'galerija',
+    title: 'Galerija',
     loadChildren: () =>
       import('./image-gallery/gallery.module').then((m) => m.GalleryModule),
   },
-  { path: 'about-me', component: AboutMeComponent },
-  { path: 'services', component: SalonServicesComponent },
-  { path: 'services/permanent-makeup', component: PermanentComponent },
-  { path: 'services/hena', component: HenaComponent },
-  { path: 'services/eylash-extension', component: EyelashesComponent },
-  { path: 'services/waxing', component: WaxingComponent },
-  { path: 'services/eyelash-lamination', component: LashLaminationComponent },
+  { path: 'apie-mane', title: 'Apie', component: AboutMeComponent },
   {
-    path: 'services/eyebrow-lamination',
+    path: 'paslaugos',
+    title: 'Paslaugos',
+    component: SalonServicesComponent,
+  },
+  {
+    path: 'paslaugos/ilgalaikis-makiažas',
+    title: 'Ilgalaikis makiažas',
+    component: PermanentComponent,
+  },
+  {
+    path: 'paslaugos/antakių-dažymas',
+    title: 'Henna',
+    component: HenaComponent,
+  },
+  {
+    path: 'paslaugos/blakstienų-priauginimas',
+    title: 'Blakstienų priauginimas',
+    component: EyelashesComponent,
+  },
+  {
+    path: 'paslaugos/depiliacija',
+    title: 'Depiliacija',
+    component: WaxingComponent,
+  },
+  {
+    path: 'paslaugos/blakstienų-laminavimas',
+    title: 'Blakstienų laminavimas',
+    component: LashLaminationComponent,
+  },
+  {
+    path: 'paslaugos/antakių-laminavimas',
+    title: 'Antakių laminavimas',
     component: EyebrowLaminationComponent,
   },
   {
-    path: 'services/permanent-removal',
+    path: 'paslaugos/Ilgalaikio-šalinimas',
+    title: 'Šalinimas',
     component: PmRemovalComponent,
   },
   {
-    path: 'services/gift-card',
+    path: 'paslaugos/dovanų-kuponas',
+    title: 'Dovanų kuponas',
     component: GiftCardComponent,
   },
-  { path: 'cost', component: CostComponent },
-  { path: 'contact', component: ContactsComponent },
+  { path: 'kainos', title: 'Kainos', component: CostComponent },
+  { path: 'kontaktai', title: 'Kontaktai', component: ContactsComponent },
   { path: 'not-found', component: PageNotFoundComponent },
+  {
+    path: '',
+    title: 'Pagrindinis',
+    component: HomeComponent,
+    pathMatch: 'full',
+  },
   { path: '**', redirectTo: '/not-found' },
 ];
 

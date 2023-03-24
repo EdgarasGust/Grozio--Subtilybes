@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { costs, Procedure } from './service-cost';
 
 @Component({
@@ -6,10 +6,10 @@ import { costs, Procedure } from './service-cost';
   templateUrl: './cost.component.html',
   styleUrls: ['./cost.component.scss'],
 })
-export class CostComponent implements OnInit {
+export class CostComponent {
   costs: Procedure[] = costs;
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  trackByName(index: number, el: any) {
+    return el.Procedure;
+  }
 }
